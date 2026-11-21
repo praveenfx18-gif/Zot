@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#071a36">
+    <title>Zonal Operations Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#071a36">
+<meta name="mobile-web-app-capable" content="yes">
+</head>
+<body>
+
+    <!-- LOGIN SCREEN -->
+    <section class="login-screen" id="loginScreen">
+
+        <div class="login-background">
+            <div class="floating-shape shape-one"></div>
+            <div class="floating-shape shape-two"></div>
+            <div class="floating-shape shape-three"></div>
+        </div>
+
+        <div class="login-wrapper">
+
+            <div class="login-brand">
+                <div class="brand-icon">Z</div>
+
+                <h1>Zonal Operations Tracker</h1>
+
+                <p>
+                    A centralized platform for managing zones,
+                    campuses, staff activities and daily operations.
+                </p>
+
+                <div class="login-features">
+                    <span>✓ Centralized Operations Management</span>
+                    <span>✓ Real-Time Report Monitoring</span>
+                    <span>✓ Secure Role-Based Access</span>
+                </div>
+            </div>
+
+            <div class="login-card">
+
+                <div class="login-card-header">
+                    <div class="login-logo">Z</div>
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to access your dashboard</p>
+                </div>
+
+                <form id="loginForm">
+
+                    <label for="loginEmail">Email Address</label>
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter your registered email"
+                        autocomplete="username"
+                        required
+                    >
+
+                    <label for="loginPassword">Password</label>
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                        id="loginBtn"
+                    >
+                        Sign In →
+                    </button>
+
+                </form>
+
+                <button
+                    type="button"
+                    id="forgotPasswordBtn"
+                    class="forgot-password-btn"
+                >
+                    Forgot Password?
+                </button>
+
+                <p class="login-footer">
+                    Secure Access · Zonal Operations Management
+                </p>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- MAIN APPLICATION -->
+    <div class="app-container" id="app" style="display:none;">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-brand">
+                <div class="brand-icon">Z</div>
+
+                <div>
+                    <h2>Zonal Tracker</h2>
+                    <span>Operations Management</span>
+                </div>
+            </div>
+
+            <div class="sidebar-label">MAIN MENU</div>
+
+            <nav class="sidebar-nav" id="sidebarNav">
+
+                <button class="nav-item active" data-page="overview">
+                    <span class="nav-icon">▦</span>
+                    Overview
+                </button>
+
+                <button class="nav-item" data-page="zones">
+                    <span class="nav-icon">◎</span>
+                    Zones
+                </button>
+
+                <button class="nav-item" data-page="campuses">
+                    <span class="nav-icon">⌂</span>
+                    Campuses
+                </button>
+                <button class="nav-item" data-page="reports">
+                    <span class="nav-icon">▤</span>
+                    All Reports
+                </button>
+
+                <button class="nav-item" data-page="newreport">
+                    <span class="nav-icon">＋</span>
+                    Submit Report
+                </button>
+
+                <button class="nav-item" data-page="myreports">
+                    <span class="nav-icon">▧</span>
+                    My Reports
+                </button>
+
+                <button class="nav-item" data-page="backup">
+                    <span class="nav-icon">⬇</span>
+                    Backup & Export
+                </button>
+<button class="nav-item" data-page="staffattendance">
+    <span class="nav-icon">📸</span>
+    Staff Attendance
+</button>
+<button class="nav-item" data-page="depositslip">
+    <span class="nav-icon">💰</span>
+    Deposit Slip
+</button>
+                <button class="nav-item" data-page="audits">
+    <span class="nav-icon">📊</span>
+    Campus Audits
+</button>
+<button class="nav-item" data-page="addstaff">
+    <span class="nav-icon">➕</span>
+    Add Staff
+</button>
+<button class="nav-item" data-page="staffmanagement">
+    <span class="nav-icon">👥</span>
+    Staff Management
+</button>
+<button class="nav-item" data-page="cashclosing">
+    <span>💰</span>
+    <span>Cash & Closing Report</span>
+</button>
+<button class="nav-item"
+        data-page="daysheet"
+        onclick="goTo('daysheet')">
+    <span class="nav-icon">📄</span>
+    <span>Daysheet Submission</span>
+</button>
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="sidebar-profile">
+                    <div class="profile-avatar" id="sidebarAvatar">U</div>
+
+                    <div class="profile-info">
+                        <strong id="sidebarUserName">Loading...</strong>
+                        <span id="sidebarUserRole">Loading role</span>
+                    </div>
+                </div>
+
+                <button class="logout-btn" id="logoutBtn">
+                    ↪ Sign Out
+                </button>
+
+            </div>
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button
+                        class="menu-toggle"
+                        id="menuToggle"
+                        type="button"
+                    >
+                        ☰
+                    </button>
+
+                    <div>
+                        <h2 id="pageTitle">Overview</h2>
+                        <p id="pageSubtitle">
+                            Monitor your operations
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="topbar-right">
+
+                    <span class="current-date" id="currentDate"></span>
+
+                    <div class="topbar-user">
+
+                        <div class="profile-avatar" id="topbarAvatar">U</div>
+
+                        <div class="profile-info">
+                            <strong id="userName">User</strong>
+                            <span id="userRole">Role</span>
+                        </div>
+<!-- Emergency Notification Bell -->
+<div class="notification-wrapper">
+    <button class="notification-bell"
+            onclick="toggleNotificationPanel()"
+            title="Notifications">
+        🔔
+        <span id="notificationCount"
+              class="notification-count"
+              style="display:none;">0</span>
+    </button>
+
+    <div id="notificationPanel"
+         class="notification-panel"
+         style="display:none;">
+
+        <div class="notification-panel-header">
+            <h3>Notifications</h3>
+            <button onclick="toggleNotificationPanel()">✕</button>
+        </div>
+
+<!-- Emergency Message Form -->
+<div id="emergencySendBox" style="display:none;">
+    <textarea
+        id="emergencyMessage"
+        placeholder="Type urgent work instructions..."
+        rows="4"
+        maxlength="1000">
+    </textarea>
+
+    <button
+        type="button"
+        id="sendEmergencyBtn"
+        class="btn btn-primary"
+        onclick="sendEmergencyNotification()">
+        Send Notification
+    </button>
+
+    <hr>
+</div>
+
+<!-- Notification History -->
+<div id="notificationList">
+    <p>Loading notifications...</p>
+</div>
+
+    </div>
+</div>
+                    </div>
+
+                </div>
+
+
+            </header>
+
+
+            <!-- DYNAMIC PAGE CONTENT -->
+            <section class="page-content" id="pageContent">
+                <div class="loading-screen">
+                    Loading your dashboard...
+                </div>
+            </section>
+
+
+            <footer class="app-footer">
+                <span>Zonal Operations Tracker</span>
+                <span>Secure Management Platform</span>
+            </footer>
+
+        </main>
+    </div>
+
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toast"></div>
+
+    <!-- SUPABASE LIBRARY -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/exifr/dist/full.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></scrip>
+
+<script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.4/dist/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
+    <!-- APPLICATION SCRIPT -->
+    <script src="script.js" defer></script>
+
+<script>
+
+</script>
+
+</body>
+</html>
